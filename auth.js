@@ -1,4 +1,3 @@
-// ─── WaveAuth — Simple localStorage Auth (No Backend) ─────────
 
 const AUTH_KEY  = "waveauth_user";
 const SESS_KEY  = "waveauth_session";
@@ -45,6 +44,5 @@ export function getAllUsers() {
 export function sendResetEmail(email) {
   const users = getAllUsers();
   if (!users[email]) throw new Error("auth/user-not-found");
-  // In real app, send email. Here we just confirm.
   return true;
 }
