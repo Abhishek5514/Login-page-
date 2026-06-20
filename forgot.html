@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forgot Password — WaveAuth</title>
+  <link rel="stylesheet" href="shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="bg-layer"></div>
+  <div class="overlay"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="toast" id="toast"></div>
+
+  <form class="auth-box" id="forgotForm" novalidate>
+
+    <div class="brand">
+      <div class="brand-icon">🌊</div>
+      <span class="brand-name">WaveAuth</span>
+    </div>
+
+    <div id="defaultState">
+      <div style="font-size:48px;margin-bottom:16px">🔑</div>
+      <h1>Forgot Password?</h1>
+      <p class="subtitle">Enter your email — we'll confirm your account exists</p>
+
+      <div class="input-box" id="emailBox">
+        <label for="email">Email Address</label>
+        <div class="input-wrap">
+          <span class="input-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </span>
+          <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <small class="error" id="emailError"></small>
+      </div>
+
+      <button type="submit" class="btn-primary" id="submitBtn">
+        <span class="btn-text">Verify Account</span>
+        <span class="spinner" id="spinner"></span>
+      </button>
+    </div>
+
+    <div id="successState" style="display:none;text-align:center">
+      <div style="font-size:56px;margin-bottom:16px">✅</div>
+      <h1 style="margin-bottom:8px">Account Found!</h1>
+      <p class="subtitle" style="margin-bottom:28px">
+        Your account exists. Please contact support to reset your password, or try logging in again.
+      </p>
+      <a href="index.html" class="btn-primary" style="text-decoration:none;display:flex">
+        ← Back to Login
+      </a>
+    </div>
+
+    <p class="bottom-text" style="margin-top:20px" id="backLink">
+      <a href="index.html">← Back to Login</a>
+    </p>
+
+  </form>
+
+  <script type="module" src="forgot.js"></script>
+</body>
+</html>

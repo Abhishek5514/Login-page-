@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up — WaveAuth</title>
+  <link rel="stylesheet" href="shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="bg-layer"></div>
+  <div class="overlay"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="toast" id="toast"></div>
+
+  <form class="auth-box" id="signupForm" novalidate>
+
+    <div class="brand">
+      <div class="brand-icon">🌊</div>
+      <span class="brand-name">WaveAuth</span>
+    </div>
+
+    <h1>Create Account</h1>
+    <p class="subtitle">Join thousands of users today — it's free</p>
+
+    <div class="input-box" id="nameBox">
+      <label for="fullname">Full Name</label>
+      <div class="input-wrap">
+        <span class="input-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </span>
+        <input type="text" id="fullname" placeholder="John Doe" autocomplete="name" />
+      </div>
+      <small class="error" id="nameError"></small>
+    </div>
+
+    <div class="input-box" id="emailBox">
+      <label for="email">Email Address</label>
+      <div class="input-wrap">
+        <span class="input-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </span>
+        <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+      </div>
+      <small class="error" id="emailError"></small>
+    </div>
+
+    <div class="input-box" id="passwordBox">
+      <label for="password">Password</label>
+      <div class="input-wrap">
+        <span class="input-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </span>
+        <input type="password" id="password" placeholder="Min. 6 characters" autocomplete="new-password" />
+        <button type="button" class="eye-btn" id="eyeBtn" aria-label="Toggle password">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+      </div>
+      <div class="strength-bar">
+        <span id="s1"></span><span id="s2"></span>
+        <span id="s3"></span><span id="s4"></span>
+      </div>
+      <small class="strength-label" id="strengthLabel"></small>
+      <small class="error" id="passError"></small>
+    </div>
+
+    <div class="input-box" id="confirmBox">
+      <label for="confirm">Confirm Password</label>
+      <div class="input-wrap">
+        <span class="input-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 12l2 2 4-4"/>
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </span>
+        <input type="password" id="confirm" placeholder="Repeat password" autocomplete="new-password" />
+      </div>
+      <small class="error" id="confirmError"></small>
+    </div>
+
+    <div class="options" style="margin-bottom:22px">
+      <label class="remember-label">
+        <input type="checkbox" id="agreeTerms" />
+        <span class="custom-checkbox"></span>
+        I agree to the <a href="#" style="color:#7dd3fc;margin-left:4px">Terms & Privacy</a>
+      </label>
+    </div>
+
+    <button type="submit" class="btn-primary" id="submitBtn">
+      <span class="btn-text">Create Account</span>
+      <span class="spinner" id="spinner"></span>
+    </button>
+
+    <p class="bottom-text" style="margin-top:20px">
+      Already have an account? <a href="index.html">Sign in →</a>
+    </p>
+
+  </form>
+
+  <script type="module" src="signup.js"></script>
+</body>
+</html>

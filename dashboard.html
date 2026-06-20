@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — WaveAuth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif; }
+    body { min-height:100vh; background:linear-gradient(135deg,#0a0f1e 0%,#0d1f3c 50%,#0a1628 100%); color:#fff; }
+
+    .navbar {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:18px 40px;
+      background:rgba(255,255,255,0.05);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      position:sticky; top:0; z-index:50;
+    }
+    .brand { display:flex; align-items:center; gap:10px; }
+    .brand-icon { font-size:24px; }
+    .brand-name { font-size:16px; font-weight:700; letter-spacing:0.06em; color:rgba(255,255,255,0.9); }
+    .nav-right { display:flex; align-items:center; gap:16px; }
+    .user-chip {
+      display:flex; align-items:center; gap:10px;
+      padding:8px 16px 8px 8px;
+      background:rgba(255,255,255,0.08);
+      border-radius:50px;
+      border:1px solid rgba(255,255,255,0.12);
+    }
+    .avatar {
+      width:34px; height:34px; border-radius:50%;
+      background:linear-gradient(135deg,#00c6ff,#0072ff);
+      display:flex; align-items:center; justify-content:center;
+      font-size:14px; font-weight:700;
+    }
+    .user-name { font-size:14px; font-weight:500; color:rgba(220,240,255,0.9); }
+    .logout-btn {
+      padding:9px 20px;
+      border:1.5px solid rgba(255,100,100,0.4);
+      border-radius:10px;
+      background:rgba(255,80,80,0.1);
+      color:#ff8080; font-size:13.5px; font-weight:500;
+      cursor:pointer; transition:all 0.2s;
+    }
+    .logout-btn:hover { background:rgba(255,80,80,0.2); border-color:rgba(255,100,100,0.7); transform:translateY(-1px); }
+
+    .container { max-width:1000px; margin:0 auto; padding:40px 24px; }
+
+    .welcome-banner {
+      background:linear-gradient(135deg,rgba(0,198,255,0.15),rgba(0,114,255,0.10));
+      border:1px solid rgba(0,198,255,0.25);
+      border-radius:20px; padding:32px 36px; margin-bottom:32px;
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:16px;
+    }
+    .welcome-text h2 { font-size:26px; font-weight:700; margin-bottom:6px; }
+    .welcome-text p  { color:rgba(200,230,255,0.70); font-size:14.5px; }
+    .welcome-emoji   { font-size:56px; }
+
+    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-bottom:32px; }
+    .stat-card {
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.10);
+      border-radius:16px; padding:24px 20px;
+      text-align:center; transition:transform 0.2s,border-color 0.2s;
+    }
+    .stat-card:hover { transform:translateY(-4px); border-color:rgba(0,198,255,0.3); }
+    .stat-icon  { font-size:28px; margin-bottom:10px; }
+    .stat-value { font-size:26px; font-weight:700; color:#00eaff; margin-bottom:4px; }
+    .stat-label { font-size:12.5px; color:rgba(180,210,255,0.60); }
+
+    .info-card {
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.10);
+      border-radius:20px; padding:28px 32px;
+    }
+    .info-card h3 { font-size:17px; font-weight:600; margin-bottom:20px; color:rgba(200,230,255,0.90); }
+    .info-row {
+      display:flex; align-items:center; gap:14px;
+      padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+    .info-row:last-child { border-bottom:none; }
+    .info-icon {
+      width:38px; height:38px; border-radius:10px;
+      background:rgba(0,198,255,0.12);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .info-label { font-size:12px; color:rgba(160,200,240,0.60); margin-bottom:2px; }
+    .info-value { font-size:14.5px; color:rgba(220,240,255,0.90); font-weight:500; }
+
+    @media(max-width:600px) {
+      .navbar { padding:14px 20px; }
+      .container { padding:24px 16px; }
+      .welcome-banner { padding:22px 20px; }
+      .welcome-emoji { display:none; }
+      .nav-right .user-chip { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="brand">
+      <span class="brand-icon">🌊</span>
+      <span class="brand-name">WaveAuth</span>
+    </div>
+    <div class="nav-right">
+      <div class="user-chip">
+        <div class="avatar" id="avatarInitial">?</div>
+        <span class="user-name" id="navUserName">Loading…</span>
+      </div>
+      <button class="logout-btn" id="logoutBtn">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="welcome-banner">
+      <div class="welcome-text">
+        <h2>Welcome back, <span id="userName">User</span>! 👋</h2>
+        <p>You're successfully logged in. Your session is active.</p>
+      </div>
+      <div class="welcome-emoji">🎉</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-icon">✅</div>
+        <div class="stat-value">Active</div>
+        <div class="stat-label">Session Status</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🔐</div>
+        <div class="stat-value">Secure</div>
+        <div class="stat-label">Connection</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">💾</div>
+        <div class="stat-value">Local</div>
+        <div class="stat-label">Auth Storage</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🌊</div>
+        <div class="stat-value">Pro</div>
+        <div class="stat-label">Account Plan</div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>👤 Account Information</h3>
+      <div class="info-row">
+        <div class="info-icon">🙍</div>
+        <div>
+          <div class="info-label">Full Name</div>
+          <div class="info-value" id="infoName">—</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📧</div>
+        <div>
+          <div class="info-label">Email Address</div>
+          <div class="info-value" id="infoEmail">—</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🆔</div>
+        <div>
+          <div class="info-label">User ID</div>
+          <div class="info-value" id="infoUID" style="font-size:12px;font-family:monospace">—</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🕐</div>
+        <div>
+          <div class="info-label">Logged In At</div>
+          <div class="info-value" id="infoLogin">—</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { getSession, clearSession } from "./auth.js";
+
+    const session = getSession();
+    if (!session) { window.location.href = "index.html"; }
+
+    const $ = (id) => document.getElementById(id);
+
+    $("userName").textContent      = session.name.split(" ")[0];
+    $("navUserName").textContent   = session.name;
+    $("avatarInitial").textContent = session.name.charAt(0).toUpperCase();
+    $("infoName").textContent      = session.name;
+    $("infoEmail").textContent     = session.email;
+    $("infoUID").textContent       = session.uid;
+    $("infoLogin").textContent     = new Date(session.loggedInAt).toLocaleString();
+
+    $("logoutBtn").addEventListener("click", () => {
+      clearSession();
+      window.location.href = "index.html";
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — WaveAuth</title>
+  <link rel="stylesheet" href="shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="bg-layer"></div>
+  <div class="overlay"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="toast" id="toast"></div>
+
+  <form class="auth-box" id="loginForm" novalidate>
+
+    <div class="brand">
+      <div class="brand-icon">🌊</div>
+      <span class="brand-name">WaveAuth</span>
+    </div>
+
+    <h1>Welcome Back</h1>
+    <p class="subtitle">Sign in to continue your journey</p>
+
+    <div class="input-box" id="emailBox">
+      <label for="email">Email Address</label>
+      <div class="input-wrap">
+        <span class="input-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </span>
+        <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+      </div>
+      <small class="error" id="emailError"></small>
+    </div>
+
+    <div class="input-box" id="passwordBox">
+      <label for="password">Password</label>
+      <div class="input-wrap">
+        <span class="input-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </span>
+        <input type="password" id="password" placeholder="Your password" autocomplete="current-password" />
+        <button type="button" class="eye-btn" id="eyeBtn" aria-label="Toggle password">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+      </div>
+      <small class="error" id="passError"></small>
+    </div>
+
+    <div class="options">
+      <label class="remember-label">
+        <input type="checkbox" id="rememberMe" />
+        <span class="custom-checkbox"></span>
+        Remember me
+      </label>
+      <a href="forgot.html" class="forgot-link">Forgot Password?</a>
+    </div>
+
+    <button type="submit" class="btn-primary" id="submitBtn">
+      <span class="btn-text">Sign In</span>
+      <span class="spinner" id="spinner"></span>
+    </button>
+
+    <p class="bottom-text" style="margin-top:20px">
+      Don't have an account? <a href="signup.html">Create one free →</a>
+    </p>
+
+  </form>
+
+  <script type="module" src="login.js"></script>
+</body>
+</html>
