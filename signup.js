@@ -17,14 +17,10 @@ function setLoading(on) {
   document.querySelector(".btn-text").style.display = on ? "none" : "block";
 }
 
-// ── Validation rules ─────────────────────────────────────────
-// Name: only letters + spaces, 3–30 characters
 function isValidName(v) { return /^[A-Za-z\s]{3,30}$/.test(v.trim()); }
 
-// Email: standard valid email format
 function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); }
 
-// Password: min 8 chars, at least 1 uppercase, 1 lowercase, 1 number, 1 special char
 function isValidPassword(v) {
   return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(v);
 }
@@ -84,7 +80,6 @@ $("password").addEventListener("input", () => {
   label.style.color = lvl.color;
 });
 
-// Confirm password — live check while typing
 $("confirm").addEventListener("input", () => {
   const confirmVal = $("confirm").value;
   const passVal    = $("password").value;
